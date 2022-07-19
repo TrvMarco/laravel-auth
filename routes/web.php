@@ -14,20 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//BACK OFFICE AREA PUBBLICA
 Route::get('/', function () {
     return view('welcome');
 });
 
+//BACK OFFICE AREA PUBBLICA - AUTH
 Auth::routes();
 
+//BACK OFFICE AREA PRIVATA
 Route::middleware('auth')
 ->namespace('Admin')
 ->name('admin.')
 ->prefix('admin')
 ->group(function(){
     Route::get('/home', 'HomeController@index')->name('home'); 
+    Route::resource('posts', 'PostController');
 });
 
+
+//FRONT OFFICE
 Route::any('{any?}', function(){
     return view('guest.home');
 })->where('any', '.*');
