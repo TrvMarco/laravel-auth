@@ -38,11 +38,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         
-        // $data->validate([
-            //     ''
-            // ]);
-            
-        $data = $request->all();
+        $request->validate([
+            'title' => 'required|string||max:200',
+            'content' => 'required|string',
+            'published' => 'sometimes|accepted',
+        ]);
+        
+        $data = $request->all(); 
         $newPost = new Post();
         $newPost->fill($data);
         $newPost->slug = Str::of($data['title'])->slug('-');  
