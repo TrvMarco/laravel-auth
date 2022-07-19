@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1>Lista dei post</h1>
+        <div class="row">
+            <div class="col-6">
+                <h1>Lista dei post</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end align-self-start">
+                <a href="{{ route('admin.posts.create')}}" type="button" class="btn btn-success">Crea post</a>
+            </div>
+        </div>
     </div>
     <div class="container">
         <table class="table">
@@ -30,10 +37,10 @@
                         <span class="badge badge-pill badge-dark">Privato</span>
                     @endif
                 </td>
-                <td>
+                <td class="d-flex flex-column">
                     <a href="{{route('admin.posts.show', $post->id)}}" type="button" class="btn btn-primary btn-sm">Visualizza</a>
                     <a href="{{route('admin.posts.edit', $post->id)}}" type="button" class="btn btn-warning btn-sm">Modifica</a>
-                    <a href="{{route('admin.posts.edit', $post->id)}}" type="button" class="btn btn-danger btn-sm">Elimina</a>
+                    <a href="{{route('admin.posts.destroy', $post->id)}}" type="button" class="btn btn-danger btn-sm">Elimina</a>
                 </td>
               </tr>
               @endforeach
