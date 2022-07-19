@@ -40,7 +40,11 @@
                 <td class="d-flex flex-column">
                     <a href="{{route('admin.posts.show', $post->id)}}" type="button" class="btn btn-primary btn-sm">Visualizza</a>
                     <a href="{{route('admin.posts.edit', $post->id)}}" type="button" class="btn btn-warning btn-sm">Modifica</a>
-                    <a href="{{route('admin.posts.destroy', $post->id)}}" type="button" class="btn btn-danger btn-sm">Elimina</a>
+                    <form action="{{route('admin.posts.destroy', $post)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                    </form>
                 </td>
               </tr>
               @endforeach
